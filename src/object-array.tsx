@@ -7,7 +7,7 @@ export const renderObjectArray = (objects: any[], objectMap: { [o: string]: any 
       ? (() => {
           const { _key, _type, ...props } = o;
           const Cmp = objectMap[_type];
-          return <Cmp key={_key} {...props} />;
+          return <Cmp key={_key} type={_type} {...props} />;
         })()
       : null
   );
