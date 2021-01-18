@@ -15,8 +15,12 @@ Then to use:
   <SanityImg builder={imageUrlBuilder} image={image} 
     //optional, set width or height and the other one will keep aspect
     width={100}
-    //optional
+    //optional, will keep aspect
     height={100}
+    //optional
+    alt="An image"
+    //optional
+    className="image"
   />
 ```
 
