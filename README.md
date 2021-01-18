@@ -10,7 +10,7 @@ It takes as input an image asset. For example the groq query:
   "image": image.asset->,
 ```
 
-Then to use:
+To use the component, you must provide an imageUrlBuilder, from @sanity/client or @otterdev/sanity-next-extra for example, as well as the image.
 ```jsx
   <SanityImg builder={imageUrlBuilder} image={image} 
     //optional, set width or height and the other one will keep aspect
@@ -47,7 +47,7 @@ Used to render an array of objects. Useful when your sanity schema is a page bro
 
 Provide components for each type:
 ```jsx
-renderObjectArray(sections, {
+renderObjectArray(page.sections, {
   header: Header,
   body: (props)=><div>Body</div>,
   footer: Footer
