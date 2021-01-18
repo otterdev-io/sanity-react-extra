@@ -1,6 +1,6 @@
 {
   "name": "@otterdev/sanity-react-extra",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "React components for sanity-backed frontends",
   "main": "index.js",
   "types": "index.d.ts",

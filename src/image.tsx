@@ -28,12 +28,12 @@ export const SanityImg = forwardRef(
     let autoHeight = image.metadata?.dimensions.height;
     let mBuilder = builder.image(image).auto("format");
     if (width) {
-      mBuilder = builder.width(width);
+      mBuilder = mBuilder.width(width);
       autoWidth = width;
       autoHeight = width / image.metadata.dimensions.aspectRatio;
     }
     if (height) {
-      mBuilder = builder.height(height);
+      mBuilder = mBuilder.height(height);
       autoHeight = height;
       autoWidth = height * image.metadata.dimensions.aspectRatio;
     }
