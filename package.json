@@ -1,6 +1,6 @@
 {
   "name": "@otterdev/sanity-react-extra",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "React components for sanity-backed frontends",
   "main": "index.js",
   "types": "index.d.ts",
@@ -14,7 +14,7 @@
     "react"
   ],
   "author": "Chris Fraser",
-  "homepage": "https://github.com/otterdev-io/react-sanity-extra",
+  "homepage": "https://github.com/otterdev-io/sanity-react-extra",
   "license": "ISC",
   "dependencies": {
     "@sanity/image-url": "^0.140.19"
