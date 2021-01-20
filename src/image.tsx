@@ -24,8 +24,13 @@ export const SanityImg = forwardRef(
     },
     ref: ForwardedRef<HTMLImageElement>
   ) => {
-    let autoWidth = image.metadata?.dimensions.width;
-    let autoHeight = image.metadata?.dimensions.height;
+    if (!image?.metadata?.dimensions) {
+      console.warn("Image has no metadata!");
+      console.warn(builder.url());
+      return <img />
+    }
+    let autoWidth = image.metadata.dimensions.width;
+    let autoHeight = image.metadata.dimensions.height;
     let mBuilder = builder.image(image).auto("format");
     if (width) {
       mBuilder = mBuilder.width(width);
@@ -36,10 +41,6 @@ export const SanityImg = forwardRef(
       mBuilder = mBuilder.height(height);
       autoHeight = height;
       autoWidth = height * image.metadata.dimensions.aspectRatio;
-    }
-    if (!image.metadata) {
-      console.warn("Image has no metadata!");
-      console.warn(mBuilder.url());
     }
     return (
       <img
