@@ -5,7 +5,7 @@ import groq from "groq";
 
 type DPR = 1 | 2 | 3;
 
-export const withDimensions = (img: string) => groq`"${img}": ${img}.asset->{
+export const withDimensions = (img: string) => groq`${img}.asset->{
   ...,
   metadata {
     dimensions

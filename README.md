@@ -13,7 +13,7 @@ import { withDimensions } from "@otterdev/saity-react-extra"
 
 const query =  groq`*[] {
   ...,
-  ${withDimensions("image")}
+  "image": ${withDimensions("image")}
 }`
 ```
 
