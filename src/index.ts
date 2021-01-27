@@ -1,4 +1,4 @@
-export { SanityImg } from "./image";
+export { withDimensions, SanityImg } from "./image";
 export { renderObjectArray } from "./object-array"
 export { rgba } from "./color"
 export type { SanityImageWithMetadata } from "./types/image"
