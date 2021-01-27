@@ -9,7 +9,7 @@ An image component that will create an image tag for your sanity image. If the q
 To encrich your query, use the `withDimensions` function in your query:
 ```groq
 import groq from "groq"
-import { withDimensions } from "@otterdev/saity-react-extra"
+import { withDimensions } from "@otterdev/sanity-react-extra"
 
 const query =  groq`*[] {
   ...,

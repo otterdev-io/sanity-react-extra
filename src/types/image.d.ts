@@ -1,8 +1,10 @@
 import {
-  SanityAsset,
   SanityImageDimensions,
+  SanityImageWithAssetStub,
 } from "@sanity/image-url/lib/types/types";
 
-export type SanityImageAsset = SanityAsset & {
-  metadata?: { dimensions?: SanityImageDimensions };
+export type SanityImageWithMetadata = SanityImageWithAssetStub & {
+  asset: {
+    metadata?: { dimensions?: SanityImageDimensions };
+  };
 };
