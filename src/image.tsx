@@ -1,8 +1,17 @@
 import { ImageUrlBuilder } from "@sanity/image-url/lib/types/builder";
 import { ForwardedRef, forwardRef } from "react";
 import { SanityImageAsset } from "./types/image";
+import groq from "groq";
 
 type DPR = 1 | 2 | 3;
+
+export const withDimensions = (img: string) => groq`"${img}": ${img}.asset->{
+  ...,
+  metadata {
+    dimensions
+  }
+}`;
+
 export const SanityImg = forwardRef(
   (
     {
@@ -25,22 +34,26 @@ export const SanityImg = forwardRef(
     ref: ForwardedRef<HTMLImageElement>
   ) => {
     if (!image?.metadata?.dimensions) {
-      console.warn("Image has no metadata!");
-      console.warn(builder.url());
-      return <img />
+      console.warn("Image has no metadata! Layout shifts will occur.");
+      console.warn(image);
     }
-    let autoWidth = image.metadata.dimensions.width;
-    let autoHeight = image.metadata.dimensions.height;
+    let autoWidth = image.metadata?.dimensions?.width;
+    let autoHeight = image.metadata?.dimensions?.height;
+    const aspectRatio = image.metadata?.dimensions?.aspectRatio;
     let mBuilder = builder.image(image).auto("format");
     if (width) {
       mBuilder = mBuilder.width(width);
       autoWidth = width;
-      autoHeight = width / image.metadata.dimensions.aspectRatio;
+      if (aspectRatio) {
+        autoHeight = width / aspectRatio;
+      }
     }
     if (height) {
       mBuilder = mBuilder.height(height);
       autoHeight = height;
-      autoWidth = height * image.metadata.dimensions.aspectRatio;
+      if (aspectRatio) {
+        autoWidth = height * aspectRatio;
+      }
     }
     return (
       <img

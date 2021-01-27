@@ -171,6 +171,11 @@ get-it@^5.0.3:
     tunnel-agent "^0.6.0"
     url-parse "^1.1.9"
 
+groq@^2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/groq/-/groq-2.1.4.tgz#aa555c2ee904831ddc8dccae4fa0a4ff7647e1cf"
+  integrity sha512-RoUkPOhr9nKGhpGNkA5h6EgF/kzEfrrxRxblPHQqURrncXBd+KYzcJHQmR4UBFOg9OK9ZUhxXPJrLdlA3dqHIg==
+
 in-publish@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/in-publish/-/in-publish-2.0.1.tgz#948b1a535c8030561cea522f73f78f4be357e00c"
