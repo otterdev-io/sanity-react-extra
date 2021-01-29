@@ -1,6 +1,6 @@
 import { ImageUrlBuilder } from "@sanity/image-url/lib/types/builder";
 import { ForwardedRef, forwardRef } from "react";
-import { SanityImageWithMetadata } from "./types/image";
+import { SanityDimensionedImage, SanityImage  } from "./types/image";
 import groq from "groq";
 
 type DPR = 1 | 2 | 3;
@@ -14,6 +14,10 @@ export const withDimensions = (img: string) => groq`${img} {
   }
 }`;
 
+export function isDimensioned(image: SanityImage): image is SanityDimensionedImage {
+  return (image as any).asset?.metadata?.dimensions != null
+}
+
 export const SanityImg = forwardRef(
   (
     {
@@ -26,7 +30,7 @@ export const SanityImg = forwardRef(
       dprs,
     }: {
       builder: ImageUrlBuilder;
-      image: SanityImageWithMetadata;
+      image: SanityImage;
       className?: string;
       alt?: string;
       width?: number;
@@ -35,13 +39,17 @@ export const SanityImg = forwardRef(
     },
     ref: ForwardedRef<HTMLImageElement>
   ) => {
-    if (!image?.asset?.metadata?.dimensions) {
+    let autoWidth: number | undefined
+    let autoHeight: number | undefined
+    let aspectRatio : number | undefined
+    if (isDimensioned(image)) {
+      autoWidth = image.asset.metadata.dimensions.width;
+      autoHeight = image.asset.metadata.dimensions.height;
+      aspectRatio = image.asset.metadata.dimensions.aspectRatio;
+    } else {
       console.warn("Image has no metadata! Layout shifts will occur.");
       console.warn(image);
     }
-    let autoWidth = image.asset?.metadata?.dimensions?.width;
-    let autoHeight = image.asset?.metadata?.dimensions?.height;
-    const aspectRatio = image.asset?.metadata?.dimensions?.aspectRatio;
     let mBuilder = builder.image(image).auto("format");
     if (width) {
       mBuilder = mBuilder.width(width);
