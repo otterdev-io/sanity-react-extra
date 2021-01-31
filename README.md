@@ -27,9 +27,9 @@ import { SanityImg } from "@otterdev/saity-react-extra"
     //optional, will keep aspect
     height={100}
     //optional
-    alt="An image"
-    //optional
     className="image"
+    //other img props
+    alt="An image"
   />
 ```
 
