@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc",
     "postbuild": "cp package.json dist && cp README.md dist",
-    "release": "npm run build && npm publish dist"
+    "release": "npm run build && cd dist && npm publish"
   },
   "keywords": [
     "sanity",
