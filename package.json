@@ -1,13 +1,13 @@
 {
-  "name": "@otterdev/sanity-react-extra",
+  "name": "sanity-react-extra",
   "version": "0.2.3",
-  "description": "React components for sanity-backed frontends",
+  "description": "React components for projects using sanity cms",
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
     "build": "tsc",
     "postbuild": "cp package.json dist && cp README.md dist",
-    "release": "yarn build && yarn publish dist --access-public --no-git-tag"
+    "release": "npm run build && npm publish dist"
   },
   "keywords": [
     "sanity",

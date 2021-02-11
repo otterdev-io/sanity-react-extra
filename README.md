@@ -2,14 +2,14 @@
 Components for react-based frontends using sanity.io
 
 ## SanityImg
-An image component that will create an image tag for your sanity image. If the query is enriched:
+An image component that will create an image tag for your sanity image. If the groq query fetches the image dimensions:
 - Setting width or height will set the other one according to image aspect ratio, ensuring no layout shift occurs during rendering. This helps page performance.
 - srcSets will be set.
 
-To encrich your query, use the `withDimensions` function in your query:
+To easily fetch dimensions for an image, use the `withDimensions` function in your query:
 ```groq
 import groq from "groq"
-import { withDimensions } from "@otterdev/sanity-react-extra"
+import { withDimensions } from "sanity-react-extra"
 
 const query =  groq`*[] {
   ...,
@@ -17,9 +17,9 @@ const query =  groq`*[] {
 }`
 ```
 
-To use the component, you must provide an imageUrlBuilder, from @sanity/client or @otterdev/sanity-next-extra for example, as well as the image.
+To use the component, you must provide an imageUrlBuilder, from @sanity/client or sanity-next-extra for example, as well as the image.
 ```jsx
-import { SanityImg } from "@otterdev/saity-react-extra"
+import { SanityImg } from "sanity-react-extra"
 
   <SanityImg builder={imageUrlBuilder} image={image} 
     //optional, set width or height and the other one will keep aspect
@@ -34,7 +34,7 @@ import { SanityImg } from "@otterdev/saity-react-extra"
 ```
 
 ## renderObjectArray
-Used to render an array of objects. Useful when your sanity schema is a page broken into sections:
+Used to render an array of objects. This is useful when your sanity schema for a page follows the 'page builder' pattern, where the page is built out of sections:
 ```js
 {
  name: "page",
@@ -54,22 +54,26 @@ Used to render an array of objects. Useful when your sanity schema is a page bro
 }
 ```
 
-Provide components for each type:
+To render the schema, just provide components for each type:
 
 ```jsx
 
-import { renderObjectArray } from "@otterdev/saity-react-extra"
+import { renderObjectArray } from "sanity-react-extra"
+
+const Header = (props) => <nav>Header</nav>
+const Body = (props) =><div>Body</div>
 
 renderObjectArray(page.sections, {
   header: Header,
-  body: (props)=><div>Body</div>,
-  footer: Footer
+  body: Body,
+  //or to inline the component:
+  footer: useCallback((props)=><div>Footer</div>, [])
 })
 ```
 ## rgba
 Render a color picker color from `@sanity/color-input` to a string for use in css:
 ```js
-import { rgba } from "@otterdev/saity-react-extra"
+import { rgba } from "sanity-react-extra"
 
 rgba(color)
 
