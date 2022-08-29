@@ -1,6 +1,6 @@
 {
   "name": "sanity-react-extra",
-  "version": "0.2.4",
+  "version": "0.2.5-beta.1",
   "description": "React components for projects using sanity cms",
   "main": "index.js",
   "types": "index.d.ts",
